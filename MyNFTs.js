@@ -15,32 +15,38 @@ const dressNFTs = [];
 // NFT object using the parameters passed to it for its metadata, 
 // and store it in the variable above.
 function mintNFT (_color, _type, _design, _fabric) {
-  if(dressNFTs.length <= 500) {
-  i = dressNFTs.length + 1;
-  newNFT = {
-    "Dress Name" : _color + " " + _type + " dress",
-    "Dress Color" : _color,
-    "Dress Type" : _type,
-    "Dress Design": _design,
-    "Type of Fabric": _fabric
+  if(dressNFTs.length < 500) {
+  const newNFT = {
+    dressName : _color + " " + _type + " dress",
+    dressColor : _color,
+    dressType : _type,
+    dressDesign : _design,
+    fabricType : _fabric
   }
-  dressNFTs.push(eval("dress" + i +" = "+ "newNFT"));
-  delete newNFT
-  };
-};
+  dressNFTs.push(newNFT);
+  console.log("Minted: " + newNFT.dressName);
+  } else {
+  return console.log("Maximum supply of NFTs reached.");
+  }
+}
 
 // create a "loop" that will go through an "array" of NFT's
 // and print their metadata with console.log()
 function listNFTs () {
-  for(j = 0; j < dressNFTs.length; j++){
-    console.log(dressNFTs[j])
+  for(i = 0; i < dressNFTs.length; i++){
+    console.log("\nNFT ID: \t\t\t" + (i + 1));
+    console.log("Dress Name: \t" + dressNFTs[i].dressName);
+    console.log("Dress Color: \t" + dressNFTs[i].dressColor);
+    console.log("Dress Type: \t" + dressNFTs[i].dressType);
+    console.log("Dress Design: " + dressNFTs[i].dressDesign);
+    console.log("Fabric Type: \t" + dressNFTs[i].fabricType);
   }
-};
+}
 
 // print the total number of NFTs we have minted to the console
 function getTotalSupply() {
-  console.log("Total Supply of NFTs is " + dressNFTs.length)
-};
+  console.log("\nTotal Supply of NFTs is " + dressNFTs.length + ".");
+}
 
 // call your functions below this line
 mintNFT("red", "A-line", "floral", "linen");
